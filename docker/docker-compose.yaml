@@ -1,0 +1,59 @@
+services:
+  ultralytics:
+    image: ultralytics/ultralytics:latest
+    container_name: ultralytics-yolo-obb
+    stdin_open: true
+    tty: true
+    volumes:
+      - ../:/workspace
+    working_dir: /workspace
+
+  deepstream-9:
+    image: nvcr.io/nvidia/deepstream:9.0-triton-multiarch
+    container_name: deepstream-9
+    stdin_open: true
+    tty: true
+    volumes:
+      - ../:/workspace
+      - "/tmp/.X11-unix:/tmp/.X11-unix"
+    working_dir: /workspace
+    devices:
+      - "/dev/dri:/dev/dri"
+    environment:
+      - DISPLAY=${DISPLAY}
+      - NVIDIA_DRIVER_CAPABILITIES=video,compute,graphics,utility
+
+  deepstream-8:
+    image: nvcr.io/nvidia/deepstream:8.0-triton-multiarch
+    container_name: deepstream-8
+    stdin_open: true
+    tty: true
+    volumes:
+      - ../:/workspace
+      - "/tmp/.X11-unix:/tmp/.X11-unix"
+    working_dir: /workspace
+    devices:
+      - "/dev/dri:/dev/dri"
+    environment:
+      - DISPLAY=${DISPLAY}
+      - NVIDIA_DRIVER_CAPABILITIES=video,compute,graphics,utility
+
+  deepstream-7:
+    image: simmir11/deepstream:7.0-devel-patched
+    container_name: deepstream-7
+    stdin_open: true
+    tty: true
+    volumes:
+      - ../:/workspace
+      - "/tmp/.X11-unix:/tmp/.X11-unix"
+    working_dir: /workspace
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [ gpu ]
+    devices:
+      - "/dev/dri:/dev/dri"
+    environment:
+      - DISPLAY=${DISPLAY}
+      - NVIDIA_DRIVER_CAPABILITIES=video,compute,graphics,utility
