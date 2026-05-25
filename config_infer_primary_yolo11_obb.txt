@@ -18,7 +18,7 @@ symmetric-padding=1
 scaling-filter=1
 scaling-compute-hw=0
 force-implicit-batch-dim=0
-parse-bbox-instance-mask-func-name=NvDsInferParseYoloOBBCuda
+parse-bbox-instance-mask-func-name=NvDsInferParseYolo11OBBCuda
 custom-lib-path=nvdsinfer_custom_impl_Yolo_OBB/libnvdsinfer_custom_impl_Yolo_obb.so
 output-instance-mask=1
 
